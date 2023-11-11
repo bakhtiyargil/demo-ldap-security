@@ -1,0 +1,33 @@
+server:
+  port: 8089
+
+spring:
+  main:
+    allow-circular-references: true #remove this
+  datasource:
+    url: jdbc:postgresql://localhost:5432/demo_ldap_security
+    username: postgres
+    password: 1405
+    driver-class-name: org.postgresql.Driver
+  security:
+    oauth2:
+      client:
+        provider:
+          keycloak:
+            token-uri: http://localhost:8080/realms/OsixiaLdapSpring/protocol/openid-connect/token
+        registration:
+          keycloak:
+            provider: keycloak
+            client-id: spring-ldap
+            client-secret: hIxcF9ADfBbDGOmnmUKNrK1hN2GFg6S8
+            authorization-grant-type: password
+            scope:
+              - openid
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8080/realms/OsixiaLdapSpring
+
+logging:
+  level:
+    ROOT: INFO
+    az.bextiyargill: DEBUG

@@ -1,0 +1,33 @@
+version: '2'
+
+networks:
+  my-network:
+    driver: bridge
+
+services:
+  openldap:
+    image: osixia/openldap:latest
+    ports:
+      - '389:389'
+      - '636:636'
+    environment:
+      - LDAP_DOMAIN=example.org
+      - LDAP_ADMIN_PASSWORD=admin
+      - LDAP_CONFIG_PASSWORD=config
+      - LDAP_READONLY_USER=true
+      - LDAP_REPLICATION=false
+      - KEEP_EXISTING_CONFIG=false
+      - KEEP_EXISTING_CONFIG=true
+    networks:
+      - my-network
+  keycloak:
+    image: quay.io/keycloak/keycloak:21.1.1
+    ports:
+      - '8080:8080'
+    environment:
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=admin
+    command:
+      - start-dev
+    networks:
+      - my-network
