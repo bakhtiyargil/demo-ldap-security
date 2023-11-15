@@ -15,3 +15,15 @@ Active Directory (OpenLDAP)-integrated Keycloak in Java using Spring Boot.
       Users:
       ![img_2.png](img_2.png)
       And you are done with the LDAP server.
+
+* You need to configure your Keycloak server to use LDAP user groups as roles for Keycloak users. <br/>
+  To achieve this, add a new User Federation provider with the LDAP type and configure it.
+  Provide the LDAP server connection and authentication settings, as well as the LDAP searching and updating properties.
+  Additionally, set up synchronization settings.
+    * E.g. <br/>
+      Connection: <br/>
+      ![img_3.png](img_3.png) <br/>
+      Authentication: <br/>
+      ![img_4.png](img_4.png) <br/>
+      Searching and updating: <br/>
+      ![img_5.png](img_5.png)<br/>
